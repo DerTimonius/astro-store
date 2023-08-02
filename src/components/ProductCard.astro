@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Button } from '@/components/ui/button';
 
 interface Props {
   product: Product
@@ -14,15 +15,21 @@ interface Props {
 const {product} = Astro.props
 ---
 
-<Card className="flex flex-col justify-between group max-h-[640px] max-w-xs">
-  <CardHeader className="flex flex-col justify-center items-center">
+<Card className="flex flex-col justify-between group max-h-[640px] max-w-xs group">
+  <CardHeader className="flex flex-col justify-center items-center  max-h-[480px]">
     <div class="flex flex-col justify-center items-center w-full max-h-[240px]">
       <img src={product.image} alt={product.title} class="max-h-[180px]"/>
     </div>
-    <CardTitle className="text-3xl">{product.title}</CardTitle>
+    <CardTitle className="text-xl p-1 md:text-2xl">{product.title}</CardTitle>
     <CardDescription>{product.category}</CardDescription>
   </CardHeader>
-  <CardFooter>
-    <p>$ {product.price}</p>
+  <CardFooter className="flex flex-col">
+    <div class="flex flex-col lg:flex-row gap-2 mb-2">
+      <a href=`/products/${product.id}`>
+        <Button variant="link">Go to product page</Button>
+      </a>
+      <Button variant="default">Add to cart</Button>
+    </div>
+    <p class="font-bold">$ {product.price}</p>
   </CardFooter>
 </Card>
