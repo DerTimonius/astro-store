@@ -1,16 +1,17 @@
 ---
-import type { Product } from '@/pages/store.astro';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from '@/components/ui/button';
+} from '@/components/ui/card';
+import type { Product } from '@/pages/store.astro';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface Props {
-  product: Product
+  product: Product;
 }
 const {product} = Astro.props
 ---
@@ -18,9 +19,15 @@ const {product} = Astro.props
 <Card className="flex flex-col justify-between group max-h-[640px] max-w-xs group">
   <CardHeader className="flex flex-col justify-center items-center  max-h-[480px]">
     <div class="flex flex-col justify-center items-center w-full max-h-[240px]">
-      <img src={product.image} alt={product.title} class="max-h-[180px]"/>
+      <img
+        src={product.image}
+        alt={product.title}
+        class="max-h-[180px]"
+      />
     </div>
-    <CardTitle className="text-xl p-1 md:text-2xl">{product.title}</CardTitle>
+    <CardTitle className="text-xl p-1 md:text-2xl">
+      {product.title}
+    </CardTitle>
     <CardDescription>{product.category}</CardDescription>
   </CardHeader>
   <CardFooter className="flex flex-col">
@@ -28,7 +35,7 @@ const {product} = Astro.props
       <a href=`/products/${product.id}`>
         <Button variant="link">Go to product page</Button>
       </a>
-      <Button variant="default">Add to cart</Button>
+      <AddToCartButton product={product} client:load/>
     </div>
     <p class="font-bold">$ {product.price}</p>
   </CardFooter>

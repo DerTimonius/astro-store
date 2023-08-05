@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import type { Product } from '../store.astro';
 import Layout from "@/layouts/Layout.astro";
+import AddToCartButton from '@/components/AddToCartButton';
 
 export function getStaticPaths() {
   const paths: {params: {id: number}}[] = []
@@ -32,7 +33,7 @@ const rating = product.rating
         <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
         <p class="text-sm font-medium underline">{rating.count} reviews</p>
       </div>
-      <Button onClick={() => console.log("To be implemented")} variant="secondary">Add to cart</Button>
+      <AddToCartButton product={product} canChangeQuantity client:load/>
     </div>
   </div>
   <hr class="mt-6"/>
