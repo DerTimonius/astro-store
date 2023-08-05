@@ -1,4 +1,4 @@
-import { cart, type Cart } from '@/lib/cart';
+import { cart, type Cart, saveToStorage } from '@/lib/cart';
 import type { Product } from '@/pages/store.astro';
 import { useStore } from '@nanostores/react';
 import { useState } from 'react';
@@ -32,6 +32,7 @@ export default function AddToCartButton({
     } else {
       cart.set([...$cart, { product, quantity }]);
     }
+    saveToStorage(cart.get());
     toast({
       title: `${product.title} added to cart!`,
       description: 'Keep shopping!',

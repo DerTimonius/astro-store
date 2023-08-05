@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { title, classes } = Astro.props;
-const layoutClasses = twMerge("bg-[#13151A] font-sans", classes)
+const layoutClasses = twMerge("dark:bg-[#13151A] font-sans", classes)
 ---
 
 <!DOCTYPE html>
@@ -42,3 +42,21 @@ const layoutClasses = twMerge("bg-[#13151A] font-sans", classes)
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
 </style>
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>

@@ -1,22 +1,23 @@
 ---
-
 import { CartButton } from './CartButton';
+import ThemeToggle from './ThemeToggle';
 import { Button } from './ui/button';
 ---
 
 <nav class="flex flex-row justify-around bg-slate-200 w-full h-16 py-4">
   <div>
     <a href="/">
-      <Button variant="link" size="lg">Home</Button>
+      <Button variant="link" size="lg" className="dark:text-gray-900">Home</Button>
     </a>
   </div>
   <div class="gap-2">
     <a href="/store">
-      <Button variant="link" size="lg">Store</Button>
+      <Button variant="link" size="lg" className="dark:text-gray-900">Store</Button>
     </a>
     <a href="/about">
-      <Button variant="link" size="lg">About</Button>
+      <Button variant="link" size="lg" className="dark:text-gray-900">About</Button>
     </a>
     <CartButton client:load />
   </div>
+  <ThemeToggle client:load />
 </nav>

@@ -1,5 +1,4 @@
 import type { Product } from '@/pages/store.astro';
-import { useStore } from '@nanostores/react';
 import { atom } from 'nanostores';
 
 export interface CartProduct {
@@ -9,4 +8,10 @@ export interface CartProduct {
 
 export type Cart = Array<CartProduct>;
 
-export const cart = atom<Cart>([]);
+const storedCart = localStorage.getItem('cart');
+
+export const cart = atom<Cart>(storedCart ? JSON.parse(storedCart) : []);
+
+export function saveToStorage(cart: Cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}

@@ -7,10 +7,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { cart, CartProduct } from '@/lib/cart';
+import { cart, CartProduct, saveToStorage } from '@/lib/cart';
 import { useStore } from '@nanostores/react';
 import { TrashIcon } from 'lucide-react';
 
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { useToast } from './ui/use-toast';
 
@@ -19,15 +20,26 @@ export function CartButton() {
   const overallTotal = $cart.reduce((acc, val) => {
     return val.product.price * val.quantity + acc;
   }, 0);
+  const itemsInCart = $cart.reduce((acc, val) => {
+    return val.quantity + acc;
+  }, 0);
 
   function removeFromCart({ product }: CartProduct) {
     cart.set($cart.filter((item) => item.product.id !== product.id));
+    saveToStorage(cart.get());
   }
 
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="link">Cart</Button>
+        <Button variant="link" className="dark:text-gray-900">
+          Cart{' '}
+          {itemsInCart > 0 && (
+            <Badge className="mr-4" variant="secondary">
+              {itemsInCart}
+            </Badge>
+          )}
+        </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
