@@ -1,6 +1,7 @@
 ---
 import Navbar from '@/components/Navbar.astro';
 import { Toaster } from '@/components/ui/toaster';
+import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import { twMerge } from 'tailwind-merge';
 interface Props {
 	classes?: string;
@@ -24,6 +25,7 @@ const layoutClasses = twMerge("dark:bg-[#13151A] font-sans", classes)
 	<body class={layoutClasses}>
 		<Navbar />
 		<slot/>
+		<ViewTransitions />
 		<Toaster client:load/>
 	</body>
 </html>
