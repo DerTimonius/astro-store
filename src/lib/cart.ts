@@ -1,4 +1,4 @@
-import type { Product } from '@/pages/store.astro';
+import type { Product } from '@/components/Products';
 import { atom } from 'nanostores';
 
 export interface CartProduct {

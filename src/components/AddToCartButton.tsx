@@ -1,5 +1,5 @@
+import type { Product } from '@/components/Products';
 import { cart, type Cart, saveToStorage } from '@/lib/cart';
-import type { Product } from '@/pages/store.astro';
 import { useStore } from '@nanostores/react';
 import { useState } from 'react';
 

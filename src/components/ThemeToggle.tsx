@@ -22,8 +22,7 @@ export default function ThemeToggle() {
   return (
     <div className="flex items-center space-x-2">
       <Switch id="darkmode" onCheckedChange={handleClick} />
-      <Label htmlFor="darkmode">{theme === 'light' ? '🌙' : '🌞'}</Label>
+      <Label htmlFor="darkmode">{theme === 'dark' ? '🌙' : '🌞'}</Label>
     </div>
-    // <button onClick={handleClick}>{theme === 'light' ? '🌙' : '🌞'}</button>
   );
 }
