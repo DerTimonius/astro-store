@@ -27,11 +27,11 @@ export default function ProductCard({ product }: Props) {
             <img
               src={product.image}
               alt={product.title}
-              className="max-h-[180px]"
+              className="max-h-[180px] group-hover:scale-105 transition-all duration-250 delay-150 ease-out"
             />
           </a>
         </div>
-        <CardTitle className="text-xl p-1 md:text-2xl">
+        <CardTitle className="text-xl p-1 md:text-2xl bg-left-bottom bg-gradient-to-r from-slate-600 to-slate-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
           {product.title}
         </CardTitle>
         <CardDescription>{product.category}</CardDescription>

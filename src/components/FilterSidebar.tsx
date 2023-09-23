@@ -43,9 +43,7 @@ export default function FilterSidebar() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="ghost" className="dark:text-gray-900">
-          Filter products
-        </Button>
+        <Button variant="outline">Filter products</Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>

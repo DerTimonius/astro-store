@@ -23,7 +23,7 @@ export default function Products() {
 
   return (
     <>
-      <h1 className="text-5xl text-white underline">Perfect Store</h1>
+      <h1 className="text-5xl text-gradient">The Store</h1>
       <FilterSidebar />
       <div className="grid grid-cols-3 gap-4 m-12">
         {products.map((product) => {
