@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { cart, CartProduct, saveToStorage } from '@/lib/cart';
+import { cart, type CartProduct, saveToStorage } from '@/lib/cart';
 import { useStore } from '@nanostores/react';
 import { TrashIcon } from 'lucide-react';
 
