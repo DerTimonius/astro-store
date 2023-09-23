@@ -20,11 +20,19 @@ const rating = product.rating
 ---
 
 <Layout title={product.category}>
-  <div class="text-gray-900 dark:text-white p-12">
-    <div class="flex flex-row justify-between min-w-full  p-4">
-      <img class="min-w-[120px] max-w-[360px] rounded-md " src={product.image} />
-      <div class="flex flex-col items-start px-12 gap-4">
-        <h1 class="text-4xl font-bold overflow-clip">{product.title}</h1>
+  <section class="w-full py-12 md:py-24 lg:py-32" data-id="1">
+    <div class="container flex items-start gap-8 px-4 md:px-6" data-id="2">
+      <img
+        class="aspect-[1/1] object-contain object-center"
+        data-id="3"
+        height="500"
+        src={product.image}
+        width="500"
+      />
+      <div class="space-y-6" data-id="4">
+        <h1 class="text-4xl font-bold tracking-tighter" data-id="5">
+          {product.title}
+        </h1>
         <div class="flex items-center mb-8">
           <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
             <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
@@ -33,11 +41,14 @@ const rating = product.rating
           <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
           <p class="text-sm font-medium underline">{rating.count} reviews</p>
         </div>
-        <p>$ {product.price} per piece</p>
+        <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-50" data-id="17">
+          $ {product.price} per piece
+        </p>
+        <p class="text-base text-zinc-500 dark:text-zinc-400" data-id="18">
+          {product.description}
+        </p>
         <AddToCartButton product={product} canChangeQuantity client:load/>
       </div>
     </div>
-    <hr class="mt-6"/>
-    <p class="font-mono line-clamp-6 py-8">{product.description}</p>
-  </div>
+  </section>
 </Layout>
