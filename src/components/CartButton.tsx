@@ -34,17 +34,17 @@ export function CartButton() {
       <SheetTrigger>
         <Button variant="link" className="dark:text-gray-900">
           Cart{' '}
-          {itemsInCart > 0 && (
+          {itemsInCart > 0 ? (
             <Badge className="mr-4" variant="secondary">
               {itemsInCart}
             </Badge>
-          )}
+          ) : null}
         </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>In your cart</SheetTitle>
-          <SheetDescription className="gap-4">
+          <SheetDescription className="flex flex-col gap-6">
             {$cart.length ? (
               $cart.map((item) => {
                 return (
@@ -58,6 +58,11 @@ export function CartButton() {
               Your total: ${' '}
               <span className="font-semibold">{overallTotal.toFixed(2)}</span>
             </p>
+            {$cart.length ? (
+              <a href="/checkout">
+                <Button variant="default">Proceed to checkout</Button>
+              </a>
+            ) : null}
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
@@ -67,10 +72,10 @@ export function CartButton() {
 
 interface CartProductProps {
   item: CartProduct;
-  removeFromCart: (item: CartProduct) => void;
+  removeFromCart?: (item: CartProduct) => void;
 }
 
-function CartElement({ item, removeFromCart }: CartProductProps) {
+export function CartElement({ item, removeFromCart }: CartProductProps) {
   const { product, quantity } = item;
   const displayedTitle =
     product.title.length > 25
@@ -81,7 +86,7 @@ function CartElement({ item, removeFromCart }: CartProductProps) {
   const { toast } = useToast();
 
   function handleRemoveFromCart() {
-    removeFromCart(item);
+    removeFromCart && removeFromCart(item);
     toast({
       variant: 'destructive',
       title: `${displayedTitle} removed from cart!`,
@@ -103,13 +108,15 @@ function CartElement({ item, removeFromCart }: CartProductProps) {
             <hr />
             <p>Subtotal: $ {subtotal.toFixed(2)}</p>
           </div>
-          <Button
-            variant="destructive"
-            size="icon"
-            onClick={handleRemoveFromCart}
-          >
-            <TrashIcon />
-          </Button>
+          {removeFromCart ? (
+            <Button
+              variant="destructive"
+              size="icon"
+              onClick={handleRemoveFromCart}
+            >
+              <TrashIcon />
+            </Button>
+          ) : null}
         </div>
       </CardContent>
     </Card>

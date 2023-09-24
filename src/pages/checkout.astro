@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {Cart} from "@/components/Cart"
+import Form from "@/components/Form.astro";
+
+---
+
+<Layout title="Checkout">
+  <div class="w-full h-screen flex flex-row justify-center items-center gap-10 m-auto">
+   <Cart client:only="react"/>
+   <Form />
+  </div>
+</Layout>
